@@ -1,0 +1,19 @@
+{
+  "name": "promanage",
+  "version": "1.0.0",
+  "description": "we are going to make a project management app, where a user can create, edit, update, delete and assign tasks to himself and to his team members",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "author": "Abhishek Sharma",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.4",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.3"
+  }
+}
