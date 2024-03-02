@@ -28,7 +28,7 @@ mongoose
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/tasks", taskRoutes);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3010;
 app.listen(PORT, (error) => {
   if (!error) {
     console.log(`Server is running at the port ${PORT}`);
