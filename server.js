@@ -1,9 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/auth");
+const taskRoutes = require("./routes/task");
+const cors = require("cors");
 require("dotenv").config();
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 // Health API
 app.get("/health", (req, res) => {
@@ -23,6 +26,7 @@ mongoose
   });
 
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/tasks", taskRoutes);
 
 const PORT = process.env.PORT;
 app.listen(PORT, (error) => {
