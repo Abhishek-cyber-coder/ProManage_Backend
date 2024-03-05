@@ -7,9 +7,19 @@ const taskSchema = new mongoose.Schema(
       required: true,
     },
     priority: {
-      type: String,
-      enum: ["low", "medium", "high"],
-      required: true,
+      label: {
+        type: String,
+        required: true,
+      },
+      color: {
+        type: String,
+        required: true,
+      },
+      typeOfPriority: {
+        type: String,
+        enum: ["low", "medium", "high"],
+        required: true,
+      },
     },
     checklist: [
       {

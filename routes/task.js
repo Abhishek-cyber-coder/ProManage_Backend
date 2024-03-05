@@ -107,7 +107,7 @@ router.put("/edit/:taskId", verifyJwtToken, async (req, res) => {
     const taskId = req.params.taskId;
     const { title, priority, checklist, status, dueDate } = req.body;
 
-    if (!taskId || !title || !priority || !checklist) {
+    if (!taskId || !title || !priority || !status || !checklist) {
       return res.status(400).json({
         message: "Bad Request",
       });
@@ -240,17 +240,17 @@ router.get("/analytics", verifyJwtToken, async (req, res) => {
     // Count task based on priority
     analyticData.lowCount = await Task.countDocuments({
       refUserId: userId,
-      priority: "low",
+      "priority.typeOfPriority": "low",
       status: { $ne: "done" },
     });
     analyticData.moderateCount = await Task.countDocuments({
       refUserId: userId,
-      priority: "medium",
+      "priority.typeOfPriority": "medium",
       status: { $ne: "done" },
     });
     analyticData.highCount = await Task.countDocuments({
       refUserId: userId,
-      priority: "high",
+      "priority.typeOfPriority": "high",
       status: { $ne: "done" },
     });
 
@@ -287,13 +287,6 @@ router.put("/checklist/:taskId/:itemId", verifyJwtToken, async (req, res) => {
         success: false,
       });
     }
-
-    // const task = await Task.updateOne(
-    //   { _id: taskId, "checklist._id": itemId },
-    //   {
-    //     $set: { "checklist.$.selected": selected },
-    //   }
-    // );
 
     const task = await Task.findOneAndUpdate(
       { _id: taskId, "checklist._id": itemId },
